@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using MvcMovie.Models;
 
 namespace MvcMovie
 {
@@ -14,7 +16,12 @@ namespace MvcMovie
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            IWebHost host = BuildWebHost(args);
+            using (IServiceScope scope = host.Services.CreateScope())
+            {
+                DBinitialize.EnsureCreated(scope.ServiceProvider);
+            }
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
