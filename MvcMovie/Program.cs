@@ -16,10 +16,12 @@ namespace MvcMovie
     {
         public static void Main(string[] args)
         {
-            IWebHost host = BuildWebHost(args);
-            using (IServiceScope scope = host.Services.CreateScope())
+            var host = BuildWebHost(args);
+            using (var scope = host.Services.CreateScope())
             {
-                DBinitialize.EnsureCreated(scope.ServiceProvider);
+                var services = scope.ServiceProvider;
+                DBinitialize.EnsureCreated(services);
+                SeedData.Initialize(services);
             }
             host.Run();
         }
