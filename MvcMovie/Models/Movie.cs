@@ -3,6 +3,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 
 namespace MvcMovie.Models
 {
@@ -16,6 +18,13 @@ namespace MvcMovie.Models
         public DateTime ReleaseDate { get; set; }
         public string Genre { get; set; }
         public decimal Price { get; set; }
+    }
+
+    public class MovieGenreViewModel
+    {
+        public List<Movie> movies;
+        public SelectList genres;
+        public string movieGenre { get; set;}
     }
 
     public class MvcMovieContext : DbContext
