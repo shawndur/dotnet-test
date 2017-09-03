@@ -4,9 +4,9 @@ namespace Prime.Services
 {
     public class PrimeService
     {
-	public bool IsPrime(int candidate)
-	{
-	    throw new NotImplementedException("Create Test First");
-	}
+        public bool IsPrime(int candidate)
+        {
+            return false;
+        }
     }
 }
