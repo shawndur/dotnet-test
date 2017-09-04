@@ -161,7 +161,7 @@ namespace ContosoUniversity.Controllers
                 .SingleOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
-                return RedirectToAction(nameof(Index)
+                return RedirectToAction(nameof(Index));
             }
 
             try
